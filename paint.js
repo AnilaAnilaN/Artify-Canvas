@@ -158,6 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
         colorModal.style.display = 'none';
         overlay.style.display = 'none';
     });
+    document.getElementById('closeColorModalBottom').addEventListener('click', () => {
+        colorModal.style.display = 'none';
+        overlay.style.display = 'none';
+    });
     overlay.addEventListener('click', () => {
         colorModal.style.display = 'none';
         overlay.style.display = 'none';
@@ -285,19 +289,29 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             ctx.beginPath();
             ctx.moveTo(startX, startY);
-            if (currentTool === 'pencil') ctx.globalAlpha = 1.0;
-            else if (currentTool === 'brush') ctx.globalAlpha = 0.7;
+            if (currentTool === 'pencil') {
+                ctx.globalAlpha = 1.0;
+                ctx.lineWidth = currentSize;
+            } else if (currentTool === 'brush') {
+                ctx.globalAlpha = 0.7;
+                ctx.lineWidth = currentSize * 2;
+            } else if (currentTool === 'eraser') {
+                ctx.globalAlpha = 1.0;
+                ctx.lineWidth = currentSize * 2;
+            }
         }
     }
 
     function draw(e) {
         if (!isDrawing) return;
 
-        if (currentTool === 'eraser') ctx.strokeStyle = 'white';
-        else ctx.strokeStyle = currentColor;
+        if (currentTool === 'eraser') {
+            ctx.strokeStyle = 'white';
+        } else {
+            ctx.strokeStyle = currentColor;
+        }
 
         ctx.fillStyle = currentColor;
-        ctx.lineWidth = currentSize;
 
         const coords = getCoordinates(e);
         const x = Math.round(coords.x);
