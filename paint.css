@@ -17,7 +17,7 @@ body {
 
 .artify-container {
     width: 95%;
-    max-width: 1600px; /* Wider container */
+    max-width: 1600px;
     height: 95vh;
     background: white;
     border-radius: 16px;
@@ -142,7 +142,7 @@ body {
     font-weight: 500;
 }
 
-/* Canvas Area - Widened and enhanced */
+/* Canvas Area */
 .canvas-area {
     flex: 1;
     display: flex;
@@ -158,8 +158,8 @@ body {
     display: flex;
     position: relative;
     overflow: hidden;
-    border: 2px solid #e5e7eb; /* Clear boundary */
-    box-shadow: 0 0 0 1px #d1d5db inset; /* Inner stroke */
+    border: 2px solid #e5e7eb;
+    box-shadow: 0 0 0 1px #d1d5db inset;
 }
 
 #paintCanvas {
@@ -483,6 +483,19 @@ body {
     display: none;
 }
 
+/* Canvas Boundary Highlight */
+.canvas-boundary {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border: 2px dashed rgba(79, 70, 229, 0.3);
+    border-radius: 12px;
+    box-sizing: border-box;
+}
+
 /* Responsive Design */
 @media (max-width: 992px) {
     .toolbar {
@@ -578,6 +591,48 @@ body {
     .brush-slider input {
         width: 140px;
     }
+    
+    /* Mobile-specific color modal styles */
+    .color-modal {
+        height: 90%;
+        max-height: 90vh;
+        padding: 16px;
+    }
+    
+    .color-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow-y: auto;
+        max-height: calc(90vh - 100px);
+    }
+    
+    .color-group {
+        padding: 12px;
+    }
+    
+    .color-group h3 {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    
+    .color-items {
+        gap: 8px;
+    }
+    
+    .color-item {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .modal-title {
+        font-size: 18px;
+    }
+    
+    .close-btn {
+        width: 32px;
+        height: 32px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -603,17 +658,27 @@ body {
         bottom: 20px;
         left: 20px;
     }
-}
-
-/* Canvas Boundary Highlight */
-.canvas-boundary {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    border: 2px dashed rgba(79, 70, 229, 0.3);
-    border-radius: 12px;
-    box-sizing: border-box;
+    
+    /* Further adjustments for very small screens */
+    .color-modal {
+        width: 95%;
+        padding: 12px;
+    }
+    
+    .color-grid {
+        gap: 8px;
+    }
+    
+    .color-group {
+        padding: 10px;
+    }
+    
+    .color-items {
+        gap: 6px;
+    }
+    
+    .color-item {
+        width: 32px;
+        height: 32px;
+    }
 }
